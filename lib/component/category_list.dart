@@ -1,26 +1,28 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../model/category_item.dart';
 
 class CategoryShow extends StatelessWidget {
+  final Map item;
   final CategoryModel categoryModel;
   final Function(String) deleteById;
-  const CategoryShow({Key? key, required this.categoryModel, required this.deleteById}) : super(key: key);
+  //final Function(Map) navigateEdit;
+  const CategoryShow({Key? key, required this.categoryModel,required this.deleteById, required this.item}) : super(key: key);
   final int num = 0;
   @override
   Widget build(BuildContext context) {
+    final id = item['id'] as String;
     return ListTile(
       leading: CircleAvatar(
         backgroundImage: NetworkImage(categoryModel.brandLogo.toString()),
       ),
-      title: Text(categoryModel.categoryName.toString()),
-      subtitle: Text(categoryModel.brandName.toString()),
+      title: Text(categoryModel.brandName.toString()),
+      subtitle: Text(categoryModel.categoryName.toString()),
       trailing: PopupMenuButton(
         onSelected: (value){
           if(value == 'edit'){
-            
+            //navigateEdit (item);
           }else if(value == 'delete'){
-
+            deleteById(id);
           }
         },itemBuilder:(context){
           return[

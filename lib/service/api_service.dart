@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 import '../model/category_item.dart';
+import 'package:http/http.dart'as http;
 
 
 class ApiService{
@@ -22,5 +23,10 @@ class ApiService{
       throw e;
     }
   }
-  //Future<List<>>
+  static Future<bool>deleteById(String id)async{
+    final url = 'https://api.ozzymart.com.au/api/brands/$id';
+    final uri = Uri.parse(url);
+    final response = await http.delete(uri);
+    return response.statusCode == 200;
+  }
 }
